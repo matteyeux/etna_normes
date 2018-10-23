@@ -6,11 +6,10 @@
 ##     check for ETNA normes. Love u Samantha <3
 ##
 
-import sys
 
-#def check_for_variable_declaration(c_file):
-    # check if there is one variable
-    # declaration per line
+# TODO : open file once, not in every function
+
+import sys
 
 # In ETNA's pool you have to set a specific
 # header with your code
@@ -39,9 +38,9 @@ def check_for_return(c_file):
                 if "return (" in lines[i]:
                     True #print("good")
                 elif "return(" in lines[i]:
-                    print("[line %d] no space after return" % (i+1))
+                    print("[line %d]  no space after return" % (i+1))
                 else:
-                    print("[line %d] not parentheses found for return" % (i+1))
+                    print("[line %d]  no parentheses found for return" % (i+1))
 
 def check_for_tabs(c_file):
     with open(c_file, "r") as file:
@@ -62,7 +61,6 @@ if __name__ == '__main__':
 
     if check_for_editor_header(file_to_test) != True:
         print("[ERROR] ETNA header not found")
-    
     check_for_tabs(file_to_test)
     check_for_spaces(file_to_test)
     check_for_return(file_to_test)
