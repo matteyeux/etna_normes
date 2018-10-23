@@ -25,9 +25,9 @@ def check_for_return(c_file):
                 if "return (" in lines[i]:
                     True #print("good")
                 elif "return(" in lines[i]:
-                    print("[line %d] no space after return" % i)
+                    print("[line %d] no space after return" % (i+1))
                 else:
-                    print("[line %d] not parentheses found for return" % i)
+                    print("[line %d] not parentheses found for return" % (i+1))
 
 def check_for_tabs(c_file):
     with open(c_file, "r") as file:
