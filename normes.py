@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*-
 ## ETNA PROJECT, 22-10-2018 by hauteb_m
-## project_name
+## normes
 ## File description: 
-##     project_description
+##     check for ETNA normes. Love u Samantha <3
 ##
 
 import sys
@@ -15,15 +15,19 @@ def check_for_spaces(c_file):
         for line in lines:
             i += 1
             if line.endswith(" \n"):
-                print("space at the EoL : %d" % i)
-"""
-def check_for_var_dec(c_file):
-    with open(file_to_test, 'r') as f:
-        lines = f.readlines()
-        for i in range(0, len(lines)):
-            for i in range(0, len(lines[i]):
-                if 
-"""
+                print("[line %d] space at EoL" % i)
+
+def check_for_return(c_file):
+    with open(c_file, "r") as f:
+         lines = f.readlines()
+         for i in range(0, len(lines)):
+            if "return" in lines[i]:
+                if "return (" in lines[i]:
+                    True #print("good")
+                elif "return(" in lines[i]:
+                    print("[line %d] no space after return" % i)
+                else:
+                    print("[line %d] not parentheses found for return" % i)
 
 def check_for_tabs(c_file):
     with open(c_file, "r") as file:
@@ -33,7 +37,7 @@ def check_for_tabs(c_file):
             if this[i] == '\n':
                 line += 1
             if this[i] == '\t':
-                print("found tab line : %d" % line)
+                print("[line %d] found tab line" % line)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -42,4 +46,5 @@ if __name__ == '__main__':
 
     file_to_test = sys.argv[1]
     check_for_tabs(file_to_test)
-    #check_for_spaces(file_to_test)
+    check_for_spaces(file_to_test)
+    check_for_return(file_to_test)
