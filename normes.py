@@ -49,7 +49,9 @@ def check_for_return(c_file):
          lines = f.readlines()
          for i in range(0, len(lines)):
             if "return" in lines[i]:
-                if "return (" in lines[i]:
+                if "return;" in lines[i]:
+                    True
+                elif "return (" in lines[i]:
                     True #print("good")
                 elif "return(" in lines[i]:
                     print("  [line %d]  no space after return" % (i+1))
@@ -68,7 +70,7 @@ def check_for_tabs(c_file):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("usage : norme.py [C file]")
+        print("usage : normes.py [C file]")
         sys.exit(1)
     for i in range(1, len(sys.argv)):
         file_to_test = sys.argv[i]
@@ -76,6 +78,7 @@ if __name__ == '__main__':
         if check_for_editor_header(file_to_test) != True:
             print("  [ERROR] ETNA header not found")
         check_needed_spaces(file_to_test)
-        check_for_tabs(file_to_test)
+        if file_to_test != "Makefile":
+            check_for_tabs(file_to_test)
         check_for_spaces(file_to_test)
         check_for_return(file_to_test)
