@@ -68,6 +68,20 @@ def check_for_tabs(c_file):
             if this[i] == '\t':
                 print("  [line %d] found tab line" % line)
 
+def check_for_stdio(c_file):
+    with open(c_file, "r") as f:
+        lines = f.readlines()
+        for i in range(0, len(lines)):
+            if "stdio.h" in lines[i]:
+                print("  [line %d]  found stdio.h" % (i+1))
+
+def check_for_printf(c_file):
+    with open(c_file, "r") as f:
+        lines = f.readlines()
+        for i in range(0, len(lines)):
+            if "printf" in lines[i]:
+                 print("  [line %d]  found printf" % (i+1))
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("usage : normes.py [C file]")
@@ -81,4 +95,5 @@ if __name__ == '__main__':
         if file_to_test != "Makefile":
             check_for_tabs(file_to_test)
         check_for_spaces(file_to_test)
-        check_for_return(file_to_test)
+        check_for_stdio(file_to_test)
+        check_for_printf(file_to_test)
