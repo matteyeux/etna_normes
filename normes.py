@@ -30,6 +30,10 @@ def check_if_backline(line, line2):
 		print("  [line %d] no curly bracket after parenthese" % (j+1))
 		print("  [line %d] curly bracket should be in the line above" % (j+2))
 
+def check_unneeded_tab(line):
+	if "\t\n" in line:
+		print("  [line %d] unneeeded tab" % (j+1))
+
 types = ["int ", "float ", "char ", "void "]
 
 def check_curly_function(line):
@@ -84,6 +88,7 @@ if __name__ == '__main__':
 				check_curly_function(lines[j])
 				check_needed_spaces(lines[j])
 				check_for_spaces(lines[j])
+				check_unneeded_tab(lines[j])
 				if check_start == 2:
 					check_for_stdio(lines[j])
 					check_for_printf(lines[j])
