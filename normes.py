@@ -8,11 +8,7 @@
 
 import sys
 
-# In ETNA's pool you have to set a specific
-# header with your code
-
 def check_needed_spaces(line):
-	#for i in range(0, len(lines)):
 	if "){" in line:
 		print("  [line %d] no space before curly bracket" % (j+1))
 	elif "if(" in line:
@@ -25,8 +21,7 @@ def check_needed_spaces(line):
 		pass
 
 def check_if_backline(line, line2):
-
-	if "if" in line and ")\n" in line and "{" in line2 :
+	if "if " in line and ")\n" in line and "{" in line2 :
 		print("  [line %d] no curly bracket after parenthese" % (j+1))
 		print("  [line %d] curly bracket should be in the line above" % (j+2))
 
@@ -37,10 +32,10 @@ def check_unneeded_tab(line):
 types = ["int ", "float ", "char ", "void "]
 
 def check_curly_function(line):
-	found = 0
+	found = False
 	for type in types:
-		if type in line and "{" in line and "(" in line and found == 0:
-			found = 1
+		if type in line and "{" in line and "(" in line and found is True:
+			found = True
 			print("  [line %d] found curly bracket after function" % (j+1))
 
 def check_for_editor_header(line):
